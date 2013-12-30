@@ -111,9 +111,23 @@ Cushing’s disease is e↵ectively treated by removing the tumor, which allows 
 
 <ul>
 <li>Determined by Composite International Diagnostic Interview modified for adolescents</li>
-<li>Corresponds to \textit{DSM-IV} and ICD-9 diagnoses</li>
-<li>Anxiety disorder (panic, phobia (specific, social, agoraphobia), separation anxiety, generalized anxiety, post-traumatic stress disorder) or major depressive disorder or dysthymia in the past 12 months.</li>
+<li>Corresponds to <em>DSM-IV</em> and <em>ICD-9</em> diagnoses</li>
 </ul>
+
+<p>In the past 12 months at least one of the following:</p>
+
+<ol>
+<li><p>Anxiety disorder </p>
+
+<ul>
+<li>panic</li>
+<li>phobia (specific, social, agoraphobia)</li>
+<li>separation anxiety</li>
+<li>generalized anxiety</li>
+<li>post-traumatic stress disorder) </li>
+</ul></li>
+<li><p>Major depressive disorder or dysthymia</p></li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -383,6 +397,24 @@ w^{A=0, \Delta_{svy}=1, \Delta_{sub}=1} &= \frac{I(\Delta_{svy}=1)}{P(\Delta_{sv
 
       <slide class="" id="slide-13" style="background:;">
   <hgroup>
+    <h2>Aim 3: Analysis</h2>
+  </hgroup>
+  <article>
+    <h3>TMLE</h3>
+
+<p>\[\begin{equation*} \begin{aligned}
+\hat{\psi} &= \frac{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})} (\mu^1(1, X_i) - \mu^1(0, X_i))}{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})}}\\
+\text{where  } \mu^1(A, X_i) &= logit^{-1}\bigg[logit(\hat{mu}^0(A, X_i)) + \hat{\epsilon}\frac{(2A-1)\Delta_{sub}}{\pi(W1)\hat{g}(A,X)} \bigg]\\
+\text{and  } \frac{1}{\pi(W_1)} &= \frac{1}{P(\Delta_{svy}=1 \vert W_1)}\\
+\text{which solves  } \hat{D}(O) &= \frac{1}{\pi(W_1)}\bigg[\frac{(2A-1)\Delta_{sub}}{\hat{g}(A,X)}(Y - \hat{\mu}^1(A,X) + \hat{\mu}^1(1,X) - \hat{\mu}^1(0,X) - \hat{\psi}) \bigg]
+\end{aligned} \end{equation*}\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-14" style="background:;">
+  <hgroup>
     <h2>Aim 3: Results</h2>
   </hgroup>
   <article>
@@ -415,7 +447,7 @@ In the simulation, DRWLS and TMLE performed better than IPW in terms of % bias, 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-14" style="background:;">
+      <slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Aim 3: Results</h2>
   </hgroup>
@@ -427,16 +459,13 @@ In the simulation, DRWLS and TMLE performed better than IPW in terms of % bias, 
 <h3>Sensitivity Analyses</h3>
 
 <ul>
-<li>Truncate weights at 99th percentile \(\rightarrow\) no change</li>
-<li>Simplify from two-stage to one-stage selection process \(\rightarrow\) no change</li>
-<li>Strengthening and weakening the relationship between \(W_1\) and selection \(\rightarrow\) no change</li>
-<li><strong>\(W\)</strong> associated with both probability of treatment and probability of selection \(\rightarrow\) IPW improved but still less efficient</li>
-<li>No EH, binary EH \(\rightarrow\) MSE of IPW improved</li>
+<li>Truncate weights at 99th percentile </li>
+<li>Simplify from two-stage to one-stage selection process</li>
+<li>Strengthening and weakening the relationship between \(W_1\) and selection </li>
+<li><strong>\(W\)</strong> associated with both probability of treatment and probability of selection </li>
+<li>No EH, binary EH</li>
+<li>No change in relative performance under correct model specification</li>
 </ul>
-
-<!---
-this last bit is probably due to fewer practical positivity situations
--->
 
   </article>
   <!-- Presenter Notes -->

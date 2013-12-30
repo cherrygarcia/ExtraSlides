@@ -61,8 +61,18 @@ Cushing’s disease is e↵ectively treated by removing the tumor, which allows 
 
 ### What do we mean by prevalent emotional disorder? 
 * Determined by Composite International Diagnostic Interview modified for adolescents
-* Corresponds to \textit{DSM-IV} and ICD-9 diagnoses
-* Anxiety disorder (panic, phobia (specific, social, agoraphobia), separation anxiety, generalized anxiety, post-traumatic stress disorder) or major depressive disorder or dysthymia in the past 12 months.
+* Corresponds to _DSM-IV_ and _ICD-9_ diagnoses
+
+In the past 12 months at least one of the following:
+
+1. Anxiety disorder 
+  * panic
+  * phobia (specific, social, agoraphobia)
+  * separation anxiety
+  * generalized anxiety
+  * post-traumatic stress disorder) 
+  
+2. Major depressive disorder or dysthymia
 
 --- 
 
@@ -177,6 +187,17 @@ w^{A=0, \Delta_{svy}=1, \Delta_{sub}=1} &= \frac{I(\Delta_{svy}=1)}{P(\Delta_{sv
 2.	Estimate coefficients for the vector of clever covariates $w^{\Delta_{sub}=1, A=a, \Delta_{svy}=1}$  via regression with $Y$ as the outcome and using $\hat{Y}^0$, the initial predicted values of the conditional outcome, as an offset.
 3.	Update $\hat{Y}^0$ by the estimated coefficient multiplied by the clever covariate. Extract predicted counterfactual outcome values for each individual in the survey sample using G-computation. Weighting the predicted individual treatment effects by the survey weights, compute the marginal mean effect estimate for the population.
 
+---
+
+## Aim 3: Analysis
+### TMLE
+$$\begin{equation*} \begin{aligned}
+\hat{\psi} &= \frac{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})} (\mu^1(1, X_i) - \mu^1(0, X_i))}{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})}}\\
+\text{where  } \mu^1(A, X_i) &= logit^{-1}\bigg[logit(\hat{mu}^0(A, X_i)) + \hat{\epsilon}\frac{(2A-1)\Delta_{sub}}{\pi(W1)\hat{g}(A,X)} \bigg]\\
+\text{and  } \frac{1}{\pi(W_1)} &= \frac{1}{P(\Delta_{svy}=1 \vert W_1)}\\
+\text{which solves  } \hat{D}(O) &= \frac{1}{\pi(W_1)}\bigg[\frac{(2A-1)\Delta_{sub}}{\hat{g}(A,X)}(Y - \hat{\mu}^1(A,X) + \hat{\mu}^1(1,X) - \hat{\mu}^1(0,X) - \hat{\psi}) \bigg]
+\end{aligned} \end{equation*}$$
+
 --- &twocol
 
 ## Aim 3: Results
@@ -210,12 +231,9 @@ In the simulation, DRWLS and TMLE performed better than IPW in terms of % bias, 
 
 ### Sensitivity Analyses
 
-* Truncate weights at 99th percentile $\rightarrow$ no change
-* Simplify from two-stage to one-stage selection process $\rightarrow$ no change
-* Strengthening and weakening the relationship between $W_1$ and selection $\rightarrow$ no change
-* **$W$** associated with both probability of treatment and probability of selection $\rightarrow$ IPW improved but still less efficient
-* No EH, binary EH $\rightarrow$ MSE of IPW improved
-
-<!---
-this last bit is probably due to fewer practical positivity situations
--->
+* Truncate weights at 99th percentile 
+* Simplify from two-stage to one-stage selection process
+* Strengthening and weakening the relationship between $W_1$ and selection 
+* **$W$** associated with both probability of treatment and probability of selection 
+* No EH, binary EH
+* No change in relative performance under correct model specification
