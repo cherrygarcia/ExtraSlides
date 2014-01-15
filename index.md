@@ -193,10 +193,17 @@ w^{A=0, \Delta_{svy}=1, \Delta_{sub}=1} &= \frac{I(\Delta_{svy}=1)}{P(\Delta_{sv
 ### TMLE
 $$\begin{equation*} \begin{aligned}
 \hat{\psi} &= \frac{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})} (\mu^1(1, X_i) - \mu^1(0, X_i))}{\frac{1}{n}\sum\limits^{n}_{i=1}\frac{1}{\pi(W_{1i})}}\\
-\text{where  } \mu^1(A, X_i) &= logit^{-1}\bigg[logit(\hat{mu}^0(A, X_i)) + \hat{\epsilon}\frac{(2A-1)\Delta_{sub}}{\pi(W1)\hat{g}(A,X)} \bigg]\\
+\text{where  } \mu^1(A, X_i) &= logit^{-1}\bigg[logit(\hat{\mu}^0(A, X_i)) + \hat{\epsilon}\frac{(2A-1)\Delta_{sub}}{\pi(W1)\hat{g}(A,X)} \bigg]\\
 \text{and  } \frac{1}{\pi(W_1)} &= \frac{1}{P(\Delta_{svy}=1 \vert W_1)}\\
-\text{which solves  } \hat{D}(O) &= \frac{1}{\pi(W_1)}\bigg[\frac{(2A-1)\Delta_{sub}}{\hat{g}(A,X)}(Y - \hat{\mu}^1(A,X) + \hat{\mu}^1(1,X) - \hat{\mu}^1(0,X) - \hat{\psi}) \bigg]
+\text{which solves  } \hat{D}(O) &= \frac{1}{\pi(W_1)}\bigg[\frac{(2A-1)\Delta_{sub}}{\hat{g}(A,X)}(Y - \hat{\mu}^1(A,X)) + \hat{\mu}^1(1,X) - \hat{\mu}^1(0,X) - \hat{\psi}) \bigg]
 \end{aligned} \end{equation*}$$
+
+---
+
+## Aim 3: Analysis
+<center>
+<img src="./TMLEfig.png" width="600" height="600">
+</center>
 
 --- &twocol
 
